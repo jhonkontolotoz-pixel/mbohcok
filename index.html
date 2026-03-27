@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apip | Neon Full-stack Developer</title>
+    <title>Marmar | Neon Full-stack Developer</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;600;700&display=swap');
-        
         :root {
             --neon-cyan: #0ff;
             --neon-pink: #f0f;
@@ -17,155 +17,199 @@
             --bg-dark: #05050a;
         }
 
-        /* Base & Custom Cursor */
-        body { 
-            font-family: 'Rajdhani', sans-serif; 
-            background-color: var(--bg-dark); 
-            color: #fff; 
+        body {
+            font-family: 'Rajdhani', 'Segoe UI', sans-serif;
+            background-color: var(--bg-dark);
+            color: #fff;
             cursor: crosshair;
             overflow-x: hidden;
         }
 
         h1, h2, h3, .brand-font {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'Orbitron', 'Courier New', monospace;
         }
 
-        /* Animated Grid Background */
+        /* ── Animated Grid Background ── */
         .cyber-grid {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background-image: 
-                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+            background-image:
+                linear-gradient(rgba(0,255,255,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,255,0.06) 1px, transparent 1px);
             background-size: 40px 40px;
             z-index: -2;
-            transform: perspective(500px) rotateX(60deg) translateY(-100px) translateZ(-200px);
             animation: gridMove 20s linear infinite;
         }
-
         @keyframes gridMove {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
-            100% { transform: perspective(500px) rotateX(60deg) translateY(40px); }
+            from { background-position: 0 0; }
+            to   { background-position: 0 40px; }
         }
 
         .vignette {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: radial-gradient(circle, transparent 50%, #05050a 100%);
+            background: radial-gradient(ellipse at center, transparent 40%, #05050a 90%);
             z-index: -1;
             pointer-events: none;
         }
 
-        /* Glowing Texts */
-        .neon-text-cyan {
-            text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+        /* ══════════════════════════════════════════
+           SHIMMER TEXT — kiri ke kanan, tanpa blur
+           ══════════════════════════════════════════ */
+        .shimmer-cyan {
+            background: linear-gradient(90deg, #00cccc 0%, #00ffff 30%, #ffffff 50%, #00ffff 70%, #00cccc 100%);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerMove 3s linear infinite;
         }
-        .neon-text-pink {
-            text-shadow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink), 0 0 20px var(--neon-pink);
+        .shimmer-pink {
+            background: linear-gradient(90deg, #cc00cc 0%, #ff00ff 30%, #ffaaff 50%, #ff00ff 70%, #cc00cc 100%);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerMove 3s linear infinite;
+        }
+        .shimmer-green {
+            background: linear-gradient(90deg, #22cc00 0%, #39ff14 30%, #aaffaa 50%, #39ff14 70%, #22cc00 100%);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerMove 3s linear infinite;
+        }
+        .shimmer-white {
+            background: linear-gradient(90deg, #aaaaaa 0%, #ffffff 30%, #e0e0ff 50%, #ffffff 70%, #aaaaaa 100%);
+            background-size: 250% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerMove 4s linear infinite;
+        }
+        .logo-shimmer {
+            background: linear-gradient(90deg, #009999 0%, #00ffff 40%, #ffffff 55%, #00ffff 70%, #009999 100%);
+            background-size: 300% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmerMove 4s linear infinite;
+        }
+        @keyframes shimmerMove {
+            0%   { background-position: 200% center; }
+            100% { background-position: -200% center; }
         }
 
-        /* Glitch Effect */
+        /* ── Glitch ── */
         .glitch-wrapper { position: relative; display: inline-block; }
         .glitch { position: relative; font-weight: 900; }
         .glitch::before, .glitch::after {
             content: attr(data-text);
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: var(--bg-dark);
         }
-        .glitch::before {
-            left: 2px; text-shadow: -2px 0 var(--neon-red);
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim 5s infinite linear alternate-reverse;
+        .glitch::before { left: 2px; color: var(--neon-red); clip: rect(44px,450px,56px,0); animation: ga 5s infinite linear alternate-reverse; }
+        .glitch::after  { left: -2px; color: var(--neon-cyan); clip: rect(44px,450px,56px,0); animation: gb 5s infinite linear alternate-reverse; }
+        @keyframes ga {
+            0%{clip:rect(10px,9999px,85px,0)} 20%{clip:rect(32px,9999px,12px,0)}
+            40%{clip:rect(78px,9999px,54px,0)} 60%{clip:rect(21px,9999px,89px,0)}
+            80%{clip:rect(55px,9999px,32px,0)} 100%{clip:rect(98px,9999px,12px,0)}
         }
-        .glitch::after {
-            left: -2px; text-shadow: -2px 0 var(--neon-cyan);
-            clip: rect(44px, 450px, 56px, 0);
-            animation: glitch-anim2 5s infinite linear alternate-reverse;
-        }
-
-        @keyframes glitch-anim {
-            0% { clip: rect(10px, 9999px, 85px, 0); }
-            20% { clip: rect(32px, 9999px, 12px, 0); }
-            40% { clip: rect(78px, 9999px, 54px, 0); }
-            60% { clip: rect(21px, 9999px, 89px, 0); }
-            80% { clip: rect(55px, 9999px, 32px, 0); }
-            100% { clip: rect(98px, 9999px, 12px, 0); }
-        }
-        @keyframes glitch-anim2 {
-            0% { clip: rect(23px, 9999px, 45px, 0); }
-            20% { clip: rect(89px, 9999px, 12px, 0); }
-            40% { clip: rect(45px, 9999px, 78px, 0); }
-            60% { clip: rect(12px, 9999px, 34px, 0); }
-            80% { clip: rect(67px, 9999px, 90px, 0); }
-            100% { clip: rect(34px, 9999px, 56px, 0); }
+        @keyframes gb {
+            0%{clip:rect(23px,9999px,45px,0)} 20%{clip:rect(89px,9999px,12px,0)}
+            40%{clip:rect(45px,9999px,78px,0)} 60%{clip:rect(12px,9999px,34px,0)}
+            80%{clip:rect(67px,9999px,90px,0)} 100%{clip:rect(34px,9999px,56px,0)}
         }
 
-        /* Neon Buttons */
+        /* ── Buttons ── */
         .btn-neon {
-            position: relative;
-            background: transparent;
-            color: var(--neon-cyan);
-            border: 1px solid var(--neon-cyan);
-            box-shadow: 0 0 5px rgba(0, 255, 255, 0.2), inset 0 0 5px rgba(0, 255, 255, 0.1);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            transition: 0.3s;
-            overflow: hidden;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
+            position: relative; background: transparent;
+            color: var(--neon-cyan); border: 1px solid rgba(0,255,255,0.7);
+            text-transform: uppercase; letter-spacing: 2px;
+            transition: 0.3s; overflow: hidden;
+            font-family: 'Orbitron', monospace; font-weight: 700;
         }
-        .btn-neon:hover {
-            background: var(--neon-cyan);
-            color: #000;
-            box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
-            transform: scale(1.05);
-        }
-        .btn-neon-pink {
-            color: var(--neon-pink);
-            border-color: var(--neon-pink);
-            box-shadow: 0 0 5px rgba(255, 0, 255, 0.2), inset 0 0 5px rgba(255, 0, 255, 0.1);
-        }
-        .btn-neon-pink:hover {
-            background: var(--neon-pink);
-            color: #000;
-            box-shadow: 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink);
-        }
+        .btn-neon:hover { background: var(--neon-cyan); color: #000; box-shadow: 0 0 22px rgba(0,255,255,0.5); transform: scale(1.05); }
+        .btn-neon-pink  { color: var(--neon-pink); border-color: rgba(255,0,255,0.7); }
+        .btn-neon-pink:hover { background: var(--neon-pink); color: #000; box-shadow: 0 0 22px rgba(255,0,255,0.5); }
 
-        /* Interactive Cards (Mouse Glow Effect) */
+        /* ── PILL NAVBAR ── */
+        .nav-pill-wrap {
+            background: rgba(0,0,0,0.6);
+            border: 1px solid rgba(0,255,255,0.25);
+            border-radius: 999px; padding: 4px;
+            display: flex; gap: 2px; position: relative;
+        }
+        .nav-pill-item {
+            position: relative; z-index: 1;
+            padding: 7px 20px; border-radius: 999px;
+            font-family: 'Orbitron', monospace;
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: rgba(255,255,255,0.5);
+            transition: color 0.25s; cursor: pointer;
+            white-space: nowrap; user-select: none; text-decoration: none;
+        }
+        .nav-pill-item:hover { color: #fff; }
+        .nav-pill-item.active { color: #000 !important; }
+        .pill-slider {
+            position: absolute; top: 4px; border-radius: 999px;
+            background: var(--neon-cyan);
+            transition: left 0.35s cubic-bezier(0.4,0,0.2,1), width 0.35s cubic-bezier(0.4,0,0.2,1);
+            pointer-events: none; z-index: 0;
+        }
+        .nav-coop {
+            padding: 7px 18px; border-radius: 999px;
+            font-family: 'Orbitron', monospace;
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            color: var(--neon-pink); border: 1px solid rgba(255,0,255,0.6);
+            transition: 0.25s; cursor: pointer; text-decoration: none;
+            margin-left: 8px; display: flex; align-items: center; gap: 6px;
+        }
+        .nav-coop:hover { background: var(--neon-pink); color: #000; }
+
+        /* ── Interactive Cards ── */
         .interactive-card {
-            background: rgba(10, 10, 20, 0.6);
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.3s, border-color 0.3s;
-            backdrop-filter: blur(5px);
+            background: rgba(8,8,18,0.8);
+            border: 1px solid rgba(0,255,255,0.15);
+            position: relative; overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
         }
         .interactive-card::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(800px circle at var(--mouse-x, 0) var(--mouse-y, 0), rgba(0, 255, 255, 0.15), transparent 40%);
-            opacity: 0;
-            transition: opacity 0.3s;
-            pointer-events: none;
-            z-index: 1;
+            content: ""; position: absolute; top:0; left:0; width:100%; height:100%;
+            background: radial-gradient(600px circle at var(--mouse-x,0) var(--mouse-y,0), rgba(0,255,255,0.1), transparent 40%);
+            opacity: 0; transition: opacity 0.3s; pointer-events: none; z-index: 1;
         }
-        .interactive-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-        }
-        .interactive-card:hover::before {
-            opacity: 1;
-        }
+        .interactive-card:hover { transform: translateY(-6px); border-color: rgba(0,255,255,0.5); box-shadow: 0 0 20px rgba(0,255,255,0.15); }
+        .interactive-card:hover::before { opacity: 1; }
         .interactive-card > * { position: relative; z-index: 2; }
 
+        /* Scanlines */
+        .scanlines {
+            position: absolute; inset: 0; pointer-events: none;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.15) 2px, rgba(0,0,0,0.15) 4px);
+        }
+
+        /* SVG skill icons */
+        .skill-icon { width: 64px; height: 64px; transition: fill 0.3s, transform 0.3s, filter 0.3s; }
+        .group:hover .skill-icon { transform: translateY(-8px); }
+        .group:hover .si-laravel { fill: #ff2d20; filter: drop-shadow(0 0 10px #ff2d20); }
+        .group:hover .si-vue     { fill: #41b883; filter: drop-shadow(0 0 10px #41b883); }
+        .group:hover .si-php     { fill: #8892be; filter: drop-shadow(0 0 10px #8892be); }
+        .group:hover .si-js      { fill: #f7df1e; filter: drop-shadow(0 0 10px #f7df1e); }
+        .group:hover .si-git     { fill: #f05032; filter: drop-shadow(0 0 10px #f05032); }
+        .group:hover .si-docker  { fill: #2496ed; filter: drop-shadow(0 0 10px #2496ed); }
+
+        /* Card icons */
+        .card-icon { width: 72px; height: 72px; transition: transform 0.3s; }
+        .group:hover .card-icon { transform: scale(1.12); }
+
         /* Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--neon-cyan); border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #fff; box-shadow: 0 0 10px var(--neon-cyan); }
+        ::-webkit-scrollbar-thumb { background: #0ff; border-radius: 4px; }
     </style>
 </head>
 <body class="scroll-smooth">
@@ -173,151 +217,265 @@
     <div class="cyber-grid"></div>
     <div class="vignette"></div>
 
-    <nav class="fixed w-full z-50 py-4 bg-black/50 backdrop-blur-md border-b border-cyan-500/30">
+    <!-- ══ NAVBAR ══ -->
+    <nav class="fixed w-full z-50 py-3 bg-black/50 border-b border-cyan-500/20" style="backdrop-filter:blur(16px)">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <span class="text-2xl font-bold tracking-tighter brand-font">APIP.<span class="text-cyan-400 neon-text-cyan">DEV</span></span>
-            <div class="space-x-8 hidden md:flex text-sm font-bold uppercase tracking-widest">
-                <a href="#home" class="hover:text-cyan-400 hover:neon-text-cyan transition">Home</a>
-                <a href="#projects" class="hover:text-cyan-400 hover:neon-text-cyan transition">Quests</a>
-                <a href="#skills" class="hover:text-cyan-400 hover:neon-text-cyan transition">Arsenal</a>
-                <a href="#contact" class="px-5 py-2 btn-neon rounded">Co-Op Mode</a>
+            <a href="#home" class="text-xl font-bold tracking-tighter brand-font select-none">
+                <span class="shimmer-white">MARMAR.</span><span class="logo-shimmer">DEV</span>
+            </a>
+            <div class="hidden md:flex items-center">
+                <div class="nav-pill-wrap" id="pillNav">
+                    <div class="pill-slider" id="pillSlider"></div>
+                    <a href="#home"     class="nav-pill-item active" data-section="home">Home</a>
+                    <a href="#projects" class="nav-pill-item" data-section="projects">Quests</a>
+                    <a href="#skills"   class="nav-pill-item" data-section="skills">Arsenal</a>
+                </div>
+                <a href="#contact" class="nav-coop">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10h2v2H7v2H5v-2H3v-2h2V8h2v2zm10 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-3 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM21 6H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm0 10H3V8h18v8z"/></svg>
+                    Co-Op Mode
+                </a>
             </div>
+            <button id="mobileToggle" class="md:hidden focus:outline-none" style="color:#0ff">
+                <svg id="hamIcon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden md:hidden border-t border-cyan-500/20 mt-2 px-6 py-4 space-y-3 bg-black/90">
+            <a href="#home"     class="block py-2 text-sm font-bold tracking-widest uppercase brand-font shimmer-white">Home</a>
+            <a href="#projects" class="block py-2 text-sm font-bold tracking-widest uppercase brand-font shimmer-white">Quests</a>
+            <a href="#skills"   class="block py-2 text-sm font-bold tracking-widest uppercase brand-font shimmer-white">Arsenal</a>
+            <a href="#contact"  class="block py-2 text-sm font-bold tracking-widest uppercase brand-font shimmer-pink">Co-Op Mode</a>
         </div>
     </nav>
 
+    <!-- ══ HERO ══ -->
     <section id="home" class="h-screen flex items-center justify-center pt-20 relative">
-        <div class="text-center space-y-6 px-4">
-            <div class="inline-block px-4 py-1.5 mb-4 text-xs font-bold tracking-widest text-green-400 uppercase border border-green-400/50 rounded-sm shadow-[0_0_10px_rgba(57,255,20,0.3)] bg-green-400/10 animate-pulse">
-                <i class="fa-solid fa-circle-dot mr-2"></i> Player 1 Ready
+        <div class="scanlines"></div>
+        <div class="text-center space-y-6 px-4 relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 mb-4 text-xs font-bold tracking-widest uppercase border border-green-400/40 rounded-full bg-green-400/10 animate-pulse brand-font shimmer-green">
+                ● Player 1 Ready
             </div>
             <div class="glitch-wrapper block">
-                <h1 class="text-5xl md:text-7xl tracking-tight glitch text-white" data-text="HI, I'M APIP">
-                    HI, I'M <span class="text-cyan-400 neon-text-cyan">APIP</span>
+                <h1 class="text-5xl md:text-7xl tracking-tight glitch shimmer-white" data-text="HI, I'M MARMAR">
+                    HI, I'M <span class="shimmer-cyan">MARMAR</span>
                 </h1>
             </div>
-            <p class="text-lg md:text-xl text-slate-300 max-w-2xl mx-auto font-semibold">
-                Full-stack Developer spesialis <span class="text-pink-500 neon-text-pink">LIV Stack</span> (Laravel, Inertia, Vue). 
-                Membangun aplikasi web layaknya menyelesaikan game mode Hardcore: <span class="text-cyan-400">Performan & Terukur.</span>
+            <p class="text-lg md:text-xl max-w-2xl mx-auto font-semibold leading-relaxed" style="color:#c0c0d0">
+                Full-stack Developer spesialis <span class="shimmer-pink">LIV Stack</span> (Laravel, Inertia, Vue).
+                Membangun aplikasi web layaknya menyelesaikan game mode Hardcore:
+                <span class="shimmer-cyan">Performan &amp; Terukur.</span>
             </p>
-            <div class="flex justify-center gap-6 pt-6">
+            <div class="flex justify-center gap-5 pt-6">
                 <a href="#projects" class="px-8 py-3 btn-neon rounded-sm">Initiate Projects</a>
-                <a href="https://github.com" class="px-8 py-3 btn-neon btn-neon-pink rounded-sm"><i class="fa-brands fa-github mr-2"></i> GitHub Data</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="projects" class="py-24 relative z-10">
-        <div class="container mx-auto px-6">
-            <h2 class="text-4xl font-bold mb-12 text-center uppercase tracking-widest brand-font">Active <span class="text-cyan-400 neon-text-cyan">Quests</span></h2>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="cards-container">
-                
-                <div class="interactive-card rounded-xl">
-                    <div class="h-48 border-b border-cyan-500/30 flex items-center justify-center text-cyan-500 bg-black/40 relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-cyan-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                        <i class="fa-solid fa-cart-shopping text-6xl drop-shadow-[0_0_15px_rgba(0,255,255,0.5)] group-hover:scale-110 transition duration-300"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 brand-font text-white">Smart POS System</h3>
-                        <p class="text-slate-400 text-sm mb-4">Sistem kasir modern (kasir-ulfah) dengan fitur RBAC, manajemen stok, dan laporan keuangan real-time.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-2 py-1 text-[11px] font-bold border border-red-500 text-red-500 rounded-sm">Laravel</span>
-                            <span class="px-2 py-1 text-[11px] font-bold border border-green-500 text-green-500 rounded-sm">Vue.js</span>
-                            <span class="px-2 py-1 text-[11px] font-bold border border-purple-500 text-purple-500 rounded-sm">Inertia</span>
-                        </div>
-                        <a href="#" class="inline-block text-cyan-400 text-sm font-bold tracking-wider hover:neon-text-cyan transition uppercase">View Source [>]</a>
-                    </div>
-                </div>
-
-                <div class="interactive-card rounded-xl">
-                    <div class="h-48 border-b border-cyan-500/30 flex items-center justify-center text-pink-500 bg-black/40 relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-pink-500/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                        <i class="fa-solid fa-tv text-6xl drop-shadow-[0_0_15px_rgba(255,0,255,0.5)] group-hover:scale-110 transition duration-300"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 brand-font text-white">RyudiWibu Tracker</h3>
-                        <p class="text-slate-400 text-sm mb-4">Platform personal untuk tracking Anime/Manga menggunakan integrasi Jikan API. Lacak tontonanmu!</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-2 py-1 text-[11px] font-bold border border-indigo-400 text-indigo-400 rounded-sm">PHP 8.3</span>
-                            <span class="px-2 py-1 text-[11px] font-bold border border-sky-400 text-sky-400 rounded-sm">Tailwind</span>
-                            <span class="px-2 py-1 text-[11px] font-bold border border-yellow-400 text-yellow-400 rounded-sm">Jikan API</span>
-                        </div>
-                        <a href="#" class="inline-block text-pink-400 text-sm font-bold tracking-wider hover:neon-text-pink transition uppercase">Live Demo [>]</a>
-                    </div>
-                </div>
-
-                <div class="interactive-card rounded-xl">
-                    <div class="h-48 border-b border-cyan-500/30 flex items-center justify-center text-green-400 bg-black/40 relative overflow-hidden group">
-                        <div class="absolute inset-0 bg-green-400/10 opacity-0 group-hover:opacity-100 transition duration-300"></div>
-                        <i class="fa-solid fa-wallet text-6xl drop-shadow-[0_0_15px_rgba(57,255,20,0.5)] group-hover:scale-110 transition duration-300"></i>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold mb-2 brand-font text-white">Finance Tracker</h3>
-                        <p class="text-slate-400 text-sm mb-4">Aplikasi pengelola keuangan pribadi dengan visualisasi data yang interaktif menggunakan UI modern.</p>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-2 py-1 text-[11px] font-bold border border-red-500 text-red-500 rounded-sm">Laravel 12</span>
-                            <span class="px-2 py-1 text-[11px] font-bold border border-cyan-500 text-cyan-500 rounded-sm">Metronic 8 / Tabler</span>
-                        </div>
-                        <a href="#" class="inline-block text-green-400 text-sm font-bold tracking-wider hover:text-green-300 transition drop-shadow-[0_0_5px_rgba(57,255,20,0.8)] uppercase">Access Data [>]</a>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <section id="skills" class="py-24 relative z-10 bg-black/60 border-y border-cyan-900/50">
-        <div class="container mx-auto px-6 text-center">
-            <h2 class="text-4xl font-bold mb-16 uppercase tracking-widest brand-font">Weapon <span class="text-pink-500 neon-text-pink">Arsenal</span></h2>
-            <div class="flex flex-wrap justify-center gap-12 text-6xl">
-                <div class="group flex flex-col items-center gap-4 cursor-crosshair">
-                    <i class="fa-brands fa-laravel text-slate-600 group-hover:text-[#ff2d20] group-hover:drop-shadow-[0_0_15px_#ff2d20] transition duration-300 transform group-hover:-translate-y-2"></i>
-                    <span class="text-sm font-bold tracking-widest opacity-0 group-hover:opacity-100 transition text-[#ff2d20]">LARAVEL</span>
-                </div>
-                <div class="group flex flex-col items-center gap-4 cursor-crosshair">
-                    <i class="fa-brands fa-vuejs text-slate-600 group-hover:text-[#41b883] group-hover:drop-shadow-[0_0_15px_#41b883] transition duration-300 transform group-hover:-translate-y-2"></i>
-                    <span class="text-sm font-bold tracking-widest opacity-0 group-hover:opacity-100 transition text-[#41b883]">VUE.JS</span>
-                </div>
-                <div class="group flex flex-col items-center gap-4 cursor-crosshair">
-                    <i class="fa-brands fa-php text-slate-600 group-hover:text-[#777bb4] group-hover:drop-shadow-[0_0_15px_#777bb4] transition duration-300 transform group-hover:-translate-y-2"></i>
-                    <span class="text-sm font-bold tracking-widest opacity-0 group-hover:opacity-100 transition text-[#777bb4]">PHP 8.3</span>
-                </div>
-                <div class="group flex flex-col items-center gap-4 cursor-crosshair">
-                    <i class="fa-brands fa-js text-slate-600 group-hover:text-[#f7df1e] group-hover:drop-shadow-[0_0_15px_#f7df1e] transition duration-300 transform group-hover:-translate-y-2"></i>
-                    <span class="text-sm font-bold tracking-widest opacity-0 group-hover:opacity-100 transition text-[#f7df1e]">JS (ES6+)</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="py-24 relative z-10">
-        <div class="container mx-auto px-6 text-center">
-            <div class="border border-cyan-500/50 bg-black/60 p-12 max-w-3xl mx-auto rounded-xl shadow-[0_0_30px_rgba(0,255,255,0.1)] backdrop-blur-md relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
-                <h2 class="text-4xl font-bold mb-4 brand-font uppercase">Start <span class="text-cyan-400 neon-text-cyan">Co-Op Mode?</span></h2>
-                <p class="text-slate-300 mb-8 text-lg">Tertarik berkolaborasi? Server selalu online untuk diskusi proyek baru atau sekadar berbagi exp tentang Laravel & Vue.</p>
-                <a href="mailto:hello@apip.dev" class="inline-block px-12 py-4 btn-neon rounded-sm text-lg">
-                    <i class="fa-solid fa-paper-plane mr-2"></i> Send Transmission
+                <a href="https://github.com" target="_blank" class="px-8 py-3 btn-neon btn-neon-pink rounded-sm flex items-center gap-2">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.004 2.04.14 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                    GitHub Data
                 </a>
             </div>
         </div>
     </section>
 
-    <footer class="py-6 text-center text-slate-500 text-sm font-bold tracking-widest border-t border-cyan-900/30 bg-black/80 relative z-10">
-        <p>SYSTEM &copy; 2026 APIP DEV. <span class="text-pink-500">LIV STACK</span> ENGINE RUNNING.</p>
+    <!-- ══ PROJECTS ══ -->
+    <section id="projects" class="py-24 relative z-10">
+        <div class="container mx-auto px-6">
+            <h2 class="text-4xl font-bold mb-12 text-center uppercase tracking-widest brand-font">
+                Active <span class="shimmer-cyan">Quests</span>
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="cards-container">
+
+                <!-- Card 1: POS -->
+                <div class="interactive-card rounded-xl">
+                    <div class="h-48 border-b border-cyan-500/20 flex items-center justify-center bg-black/50 relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-cyan-400/5 opacity-0 group-hover:opacity-100 transition"></div>
+                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#00cccc" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 14px rgba(0,255,255,0.6))">
+                            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 brand-font shimmer-white">Smart POS System</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">Sistem kasir modern dengan fitur RBAC, manajemen stok, dan laporan keuangan real-time.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-1 text-[11px] font-bold border border-red-500/60 text-red-400 rounded-sm bg-red-500/5">Laravel</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-green-500/60 text-green-400 rounded-sm bg-green-500/5">Vue.js</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-purple-500/60 text-purple-400 rounded-sm bg-purple-500/5">Inertia</span>
+                        </div>
+                        <a href="#" class="inline-block text-sm font-bold tracking-wider uppercase shimmer-cyan">View Source [&gt;]</a>
+                    </div>
+                </div>
+
+                <!-- Card 2: Tracker -->
+                <div class="interactive-card rounded-xl">
+                    <div class="h-48 border-b border-cyan-500/20 flex items-center justify-center bg-black/50 relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-pink-400/5 opacity-0 group-hover:opacity-100 transition"></div>
+                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#cc00cc" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 14px rgba(255,0,255,0.6))">
+                            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 brand-font shimmer-white">RyudiWibu Tracker</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">Platform personal untuk tracking Anime/Manga menggunakan integrasi Jikan API.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-1 text-[11px] font-bold border border-indigo-400/60 text-indigo-400 rounded-sm bg-indigo-400/5">PHP 8.3</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-sky-400/60 text-sky-400 rounded-sm bg-sky-400/5">Tailwind</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-yellow-400/60 text-yellow-400 rounded-sm bg-yellow-400/5">Jikan API</span>
+                        </div>
+                        <a href="#" class="inline-block text-sm font-bold tracking-wider uppercase shimmer-pink">Live Demo [&gt;]</a>
+                    </div>
+                </div>
+
+                <!-- Card 3: Finance -->
+                <div class="interactive-card rounded-xl">
+                    <div class="h-48 border-b border-cyan-500/20 flex items-center justify-center bg-black/50 relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-green-400/5 opacity-0 group-hover:opacity-100 transition"></div>
+                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#22cc00" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 14px rgba(57,255,20,0.6))">
+                            <path d="M20 12V8H6a2 2 0 0 1 0-4h14v4"/><path d="M4 6v12a2 2 0 0 0 2 2h14v-4"/><circle cx="17" cy="12" r="1.5" fill="#22cc00"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 brand-font shimmer-white">Finance Tracker</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">Aplikasi pengelola keuangan pribadi dengan visualisasi data interaktif dan UI modern.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-1 text-[11px] font-bold border border-red-500/60 text-red-400 rounded-sm bg-red-500/5">Laravel 12</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-cyan-500/60 text-cyan-400 rounded-sm bg-cyan-500/5">Metronic 8</span>
+                        </div>
+                        <a href="#" class="inline-block text-sm font-bold tracking-wider uppercase shimmer-green">Access Data [&gt;]</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ SKILLS ══ -->
+    <section id="skills" class="py-24 relative z-10 bg-black/60 border-y border-cyan-900/30">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-4xl font-bold mb-16 uppercase tracking-widest brand-font">
+                Weapon <span class="shimmer-pink">Arsenal</span>
+            </h2>
+            <div class="flex flex-wrap justify-center gap-14">
+
+                <!-- Laravel -->
+                <div class="group flex flex-col items-center gap-3 cursor-crosshair">
+                    <svg class="skill-icon si-laravel" style="fill:#334155" viewBox="0 0 30 30"><path d="M27.9 8.2c0-.1-.1-.2-.1-.2L23.5.4c-.1-.2-.4-.4-.7-.4H10.2c-.3 0-.6.2-.7.4L.2 17.7c-.1.2-.1.5 0 .7L4.5 25c.2.3.5.4.7.4h5.3c.3 0 .5-.1.7-.3l1.4-2.2 2.1 1.3c.2.1.5.1.7 0l14-11.5c.2-.2.3-.4.3-.6.1-.3 0-.5-.1-.9zm-6.7 9.2L14 12.2l5.2-8.5 5.9 5.9-3.9 7.8zm-8.3-1.4-3.7 6L7 19.7c-.1-.1-.2-.2-.2-.4L3 9.5l5.1 5.1 4.8 1.4zm.7.4-4.7-1.3-5-5 8.4-8.6 6.1.3-4.8 14.6zM9.8 2.7l-7.9 8.1 3.8 9.5 2.4 2.4 3.7-5.9L9.8 2.7zm3.1 23.4-2.3-1.4 2.8-4.5 7.5 4.8-7.2 1.1h-.8zm8.7-1.4-7.6-4.9 4.8-14.5.2 19.4z"/></svg>
+                    <span class="text-xs font-bold tracking-widest opacity-0 group-hover:opacity-100 transition brand-font" style="color:#ff2d20">LARAVEL</span>
+                </div>
+
+                <!-- Vue -->
+                <div class="group flex flex-col items-center gap-3 cursor-crosshair">
+                    <svg class="skill-icon si-vue" style="fill:#334155" viewBox="0 0 24 24"><path d="M24 1.6l-12 20.8L0 1.6h4.6L12 14.8 19.4 1.6H24zm-7 0l-5 8.7-5-8.7H3l9 15.6L21 1.6h-4z"/></svg>
+                    <span class="text-xs font-bold tracking-widest opacity-0 group-hover:opacity-100 transition brand-font" style="color:#41b883">VUE.JS</span>
+                </div>
+
+                <!-- PHP -->
+                <div class="group flex flex-col items-center gap-3 cursor-crosshair">
+                    <svg class="skill-icon si-php" style="fill:#334155" viewBox="0 0 24 24"><path d="M12 5.7C5.4 5.7 0 8.6 0 12s5.4 6.3 12 6.3 12-2.9 12-6.3-5.4-6.3-12-6.3zm-2.7 8.8H8v-1.4H6.7v1.4H5.4V9.5h1.3v2.4H8V9.5h1.3v5zm5.2 0h-1.1l-.1-.6c-.4.5-.8.7-1.4.7-.8 0-1.4-.5-1.4-1.5V9.5h1.3v3.5c0 .4.2.6.5.6.3 0 .6-.2.7-.6V9.5H14v1.4h.8c.7 0 1.1.4 1.1 1v1.2c0 .8-.6 1.4-1.4 1.4zm4.3-1h-.5v1h-1.3V9.5h1.8c1.1 0 1.8.6 1.8 1.8 0 1.3-.7 2.2-1.8 2.2zm-.3-2.9h-.2v1.9h.2c.4 0 .6-.4.6-1 0-.5-.2-.9-.6-.9z"/></svg>
+                    <span class="text-xs font-bold tracking-widest opacity-0 group-hover:opacity-100 transition brand-font" style="color:#8892be">PHP 8.3</span>
+                </div>
+
+                <!-- JS -->
+                <div class="group flex flex-col items-center gap-3 cursor-crosshair">
+                    <svg class="skill-icon si-js" style="fill:#334155" viewBox="0 0 24 24"><path d="M0 0h24v24H0V0zm22 18.1c-.2-1-.9-1.9-3.1-2.7-.76-.36-1.6-.6-1.84-1.16-.1-.33-.12-.51-.06-.71.17-.74 1.04-.96 1.73-.73.45.15.88.52 1.1 1.14 1.16-.76 1.16-.76 1.96-1.26-.3-.48-.45-.69-.64-.89-.68-.77-1.6-1.16-3.09-1.13l-.77.1c-.74.19-1.45.59-1.87 1.14-.62.79-.8 1.87-.5 2.92.38 1.43 1.5 1.86 2.94 2.35.87.3 1.65.68 1.63 1.38 0 .1-.01.2-.03.3-.1.4-.4.66-.96.76-.65.12-1.31-.06-1.76-.56-.33-.36-.56-.85-.55-1.7l-2.18.14c.05.93.25 1.63.67 2.18.8 1.07 2.26 1.42 3.67 1.2.76-.12 1.47-.44 1.96-.99.52-.58.73-1.35.7-2.16zm-9.12-7.57H10.7c0 1.56 0 3.1-.01 4.66-.01 1.03.05 1.97-.12 2.26-.27.56-1.02.5-1.36.39-.34-.17-.52-.4-.72-.73-.05-.1-.1-.19-.12-.23L6.9 18.8c.33.68.8 1.26 1.41 1.62.87.52 2.05.66 3.27.36.8-.2 1.48-.7 1.83-1.46.47-.96.4-2.14.39-3.26.02-1.98 0-3.96 0-5.94z"/></svg>
+                    <span class="text-xs font-bold tracking-widest opacity-0 group-hover:opacity-100 transition brand-font" style="color:#f7df1e">JS ES6+</span>
+                </div>
+
+                <!-- Git -->
+                <div class="group flex flex-col items-center gap-3 cursor-crosshair">
+                    <svg class="skill-icon si-git" style="fill:#334155" viewBox="0 0 24 24"><path d="M23.5 11.5l-11-11a1.7 1.7 0 0 0-2.4 0l-2.4 2.4 3 3A2 2 0 0 1 13.2 8l2.9 2.9a2 2 0 0 1 2.1 3.2 2 2 0 0 1-2.8 0 2 2 0 0 1-.4-2.2L12.4 9.4v6.3a2 2 0 0 1 .5 3.6 2 2 0 0 1-2.8-1.8 2 2 0 0 1 1-1.7V9.2a2 2 0 0 1-1-1.7 2 2 0 0 1 .4-1.2l-3-3L.5 10.1a1.7 1.7 0 0 0 0 2.4l11 11a1.7 1.7 0 0 0 2.4 0l9.6-9.6a1.7 1.7 0 0 0 0-2.4z"/></svg>
+                    <span class="text-xs font-bold tracking-widest opacity-0 group-hover:opacity-100 transition brand-font" style="color:#f05032">GIT</span>
+                </div>
+
+                <!-- Docker -->
+                <div class="group flex flex-col items-center gap-3 cursor-crosshair">
+                    <svg class="skill-icon si-docker" style="fill:#334155" viewBox="0 0 24 24"><path d="M13.98 11H12v-2h1.98V11zm-3.98 0H8V9h2v2zm-3.98 0H4V9h2.02V11zm7.96-3H12V6h1.98V8zm-3.98 0H8V6h2v2zm-3.98 0H4V6h2.02V8zM22.5 11c-.47 0-.93.06-1.37.18C20.63 9.26 18.95 8 17 8c-.32 0-.63.04-.93.1C15.37 6.39 13.83 5 12 5c-1.82 0-3.36 1.37-3.07 3.1C8.63 8.04 8.32 8 8 8c-1.95 0-3.63 1.26-4.13 3.18A3.5 3.5 0 0 0 2.5 11a3.5 3.5 0 0 0 0 7h20a3.5 3.5 0 0 0 0-7z"/></svg>
+                    <span class="text-xs font-bold tracking-widest opacity-0 group-hover:opacity-100 transition brand-font" style="color:#2496ed">DOCKER</span>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ CONTACT ══ -->
+    <section id="contact" class="py-24 relative z-10">
+        <div class="container mx-auto px-6 text-center">
+            <div class="border border-cyan-500/30 bg-black/70 p-12 max-w-3xl mx-auto rounded-xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+                <div class="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-pink-500 to-transparent"></div>
+                <h2 class="text-4xl font-bold mb-4 brand-font uppercase">
+                    Start <span class="shimmer-cyan">Co-Op Mode?</span>
+                </h2>
+                <p class="mb-8 text-lg leading-relaxed" style="color:#c0c0d0">Tertarik berkolaborasi? Server selalu online untuk diskusi proyek baru atau sekadar berbagi exp tentang Laravel &amp; Vue.</p>
+                <a href="mailto:hello@marmar.dev" class="inline-flex items-center gap-3 px-12 py-4 btn-neon rounded-sm text-base">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
+                    Send Transmission
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-6 text-center text-xs font-bold tracking-widest border-t border-cyan-900/30 bg-black/80 relative z-10 brand-font">
+        <p class="shimmer-white">SYSTEM &copy; 2026 MARMAR DEV. <span class="shimmer-pink">LIV STACK</span> ENGINE RUNNING.</p>
     </footer>
 
     <script>
-        document.getElementById("cards-container").onmousemove = e => {
-            for(const card of document.getElementsByClassName("interactive-card")) {
-                const rect = card.getBoundingClientRect(),
-                      x = e.clientX - rect.left,
-                      y = e.clientY - rect.top;
+        /* ── Pill slider ── */
+        const pillNav   = document.getElementById('pillNav');
+        const slider    = document.getElementById('pillSlider');
+        const pillItems = pillNav.querySelectorAll('.nav-pill-item');
 
-                card.style.setProperty("--mouse-x", `${x}px`);
-                card.style.setProperty("--mouse-y", `${y}px`);
-            }
+        function moveSlider(el) {
+            const nr = pillNav.getBoundingClientRect(), ir = el.getBoundingClientRect();
+            slider.style.left   = (ir.left - nr.left - 4) + 'px';
+            slider.style.width  = ir.width + 'px';
+            slider.style.height = ir.height + 'px';
+            slider.style.top    = (ir.top - nr.top) + 'px';
         }
+
+        pillItems.forEach(item => {
+            item.addEventListener('click', () => {
+                pillItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+                moveSlider(item);
+            });
+        });
+
+        window.addEventListener('load', () => {
+            const a = pillNav.querySelector('.nav-pill-item.active');
+            if (a) moveSlider(a);
+        });
+
+        /* Scroll-spy */
+        const secs = ['home','projects','skills','contact'];
+        window.addEventListener('scroll', () => {
+            let cur = 'home';
+            secs.forEach(id => {
+                const el = document.getElementById(id);
+                if (el && window.scrollY >= el.offsetTop - 120) cur = id;
+            });
+            pillItems.forEach(item => {
+                const match = item.dataset.section === cur;
+                item.classList.toggle('active', match);
+                if (match) moveSlider(item);
+            });
+        }, { passive: true });
+
+        /* Mobile menu */
+        document.getElementById('mobileToggle').addEventListener('click', () => {
+            const menu = document.getElementById('mobileMenu');
+            const icon = document.getElementById('hamIcon');
+            const open = !menu.classList.contains('hidden');
+            menu.classList.toggle('hidden', open);
+            icon.innerHTML = open
+                ? '<path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>'
+                : '<path d="M19 6.4L17.6 5 12 10.6 6.4 5 5 6.4l5.6 5.6L5 17.6 6.4 19l5.6-5.6 5.6 5.6 1.4-1.4-5.6-5.6z"/>';
+        });
+
+        /* Card mouse glow */
+        document.getElementById('cards-container').addEventListener('mousemove', e => {
+            for (const card of document.getElementsByClassName('interactive-card')) {
+                const r = card.getBoundingClientRect();
+                card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+                card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+            }
+        });
     </script>
 </body>
 </html>
