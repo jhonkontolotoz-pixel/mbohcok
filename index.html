@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marmar | Neon Full-stack Developer</title>
+    <title>PEEPZY</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,9 +53,7 @@
             pointer-events: none;
         }
 
-        /* ══════════════════════════════════════════
-           SHIMMER TEXT — kiri ke kanan, tanpa blur
-           ══════════════════════════════════════════ */
+        /* ══ SHIMMER ══ */
         .shimmer-cyan {
             background: linear-gradient(90deg, #00cccc 0%, #00ffff 30%, #ffffff 50%, #00ffff 70%, #00cccc 100%);
             background-size: 250% auto;
@@ -101,25 +99,78 @@
             100% { background-position: -200% center; }
         }
 
-        /* ── Glitch ── */
-        .glitch-wrapper { position: relative; display: inline-block; }
-        .glitch { position: relative; font-weight: 900; }
-        .glitch::before, .glitch::after {
+        /* ══ PURE GLITCH — fluid, no freeze ══ */
+        .glitch-title {
+            position: relative;
+            display: inline-block;
+            color: #fff;
+            font-weight: 900;
+        }
+        .glitch-title .cyan-word {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px rgba(0,255,255,0.5);
+        }
+        .glitch-title::before,
+        .glitch-title::after {
             content: attr(data-text);
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: var(--bg-dark);
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            font-weight: 900;
+            will-change: transform, clip-path;
         }
-        .glitch::before { left: 2px; color: var(--neon-red); clip: rect(44px,450px,56px,0); animation: ga 5s infinite linear alternate-reverse; }
-        .glitch::after  { left: -2px; color: var(--neon-cyan); clip: rect(44px,450px,56px,0); animation: gb 5s infinite linear alternate-reverse; }
-        @keyframes ga {
-            0%{clip:rect(10px,9999px,85px,0)} 20%{clip:rect(32px,9999px,12px,0)}
-            40%{clip:rect(78px,9999px,54px,0)} 60%{clip:rect(21px,9999px,89px,0)}
-            80%{clip:rect(55px,9999px,32px,0)} 100%{clip:rect(98px,9999px,12px,0)}
+        .glitch-title::before {
+            color: var(--neon-red);
+            animation: glitch-a 2.4s infinite linear;
+            opacity: 0.9;
         }
-        @keyframes gb {
-            0%{clip:rect(23px,9999px,45px,0)} 20%{clip:rect(89px,9999px,12px,0)}
-            40%{clip:rect(45px,9999px,78px,0)} 60%{clip:rect(12px,9999px,34px,0)}
-            80%{clip:rect(67px,9999px,90px,0)} 100%{clip:rect(34px,9999px,56px,0)}
+        .glitch-title::after {
+            color: var(--neon-cyan);
+            animation: glitch-b 2.4s infinite linear;
+            opacity: 0.9;
+        }
+        @keyframes glitch-a {
+            0%   { clip-path: polygon(0 0,100% 0,100% 0,0 0);          transform: translateX(0); }
+            5%   { clip-path: polygon(0 8%,100% 8%,100% 18%,0 18%);    transform: translateX(-3px); }
+            10%  { clip-path: polygon(0 45%,100% 45%,100% 52%,0 52%);  transform: translateX(3px); }
+            15%  { clip-path: polygon(0 72%,100% 72%,100% 80%,0 80%);  transform: translateX(-2px); }
+            20%  { clip-path: polygon(0 25%,100% 25%,100% 34%,0 34%);  transform: translateX(4px); }
+            25%  { clip-path: polygon(0 60%,100% 60%,100% 68%,0 68%);  transform: translateX(-3px); }
+            30%  { clip-path: polygon(0 5%,100% 5%,100% 14%,0 14%);    transform: translateX(2px); }
+            35%  { clip-path: polygon(0 82%,100% 82%,100% 90%,0 90%);  transform: translateX(-4px); }
+            40%  { clip-path: polygon(0 38%,100% 38%,100% 46%,0 46%);  transform: translateX(3px); }
+            45%  { clip-path: polygon(0 15%,100% 15%,100% 24%,0 24%);  transform: translateX(-2px); }
+            50%  { clip-path: polygon(0 0,100% 0,100% 0,0 0);          transform: translateX(0); }
+            55%  { clip-path: polygon(0 55%,100% 55%,100% 62%,0 62%);  transform: translateX(3px); }
+            60%  { clip-path: polygon(0 30%,100% 30%,100% 40%,0 40%);  transform: translateX(-3px); }
+            65%  { clip-path: polygon(0 78%,100% 78%,100% 86%,0 86%);  transform: translateX(2px); }
+            70%  { clip-path: polygon(0 10%,100% 10%,100% 19%,0 19%);  transform: translateX(-4px); }
+            75%  { clip-path: polygon(0 0,100% 0,100% 0,0 0);          transform: translateX(0); }
+            80%  { clip-path: polygon(0 48%,100% 48%,100% 56%,0 56%);  transform: translateX(3px); }
+            85%  { clip-path: polygon(0 20%,100% 20%,100% 28%,0 28%);  transform: translateX(-2px); }
+            90%  { clip-path: polygon(0 65%,100% 65%,100% 74%,0 74%);  transform: translateX(4px); }
+            95%  { clip-path: polygon(0 0,100% 0,100% 0,0 0);          transform: translateX(0); }
+            100% { clip-path: polygon(0 0,100% 0,100% 0,0 0);          transform: translateX(0); }
+        }
+        @keyframes glitch-b {
+            0%   { clip-path: polygon(0 0,100% 0,100% 0,0 0);          transform: translateX(0); }
+            7%   { clip-path: polygon(0 60%,100% 60%,100% 70%,0 70%);  transform: translateX(3px); }
+            13%  { clip-path: polygon(0 20%,100% 20%,100% 30%,0 30%);  transform: translateX(-3px); }
+            19%  { clip-path: polygon(0 80%,100% 80%,100% 88%,0 88%);  transform: translateX(4px); }
+            25%  { clip-path: polygon(0 5%,100% 5%,100% 13%,0 13%);    transform: translateX(-2px); }
+            31%  { clip-path: polygon(0 42%,100% 42%,100% 52%,0 52%);  transform: translateX(3px); }
+            37%  { clip-path: polygon(0 0,100% 0,100% 0,0 0);          transform: translateX(0); }
+            43%  { clip-path: polygon(0 68%,100% 68%,100% 76%,0 76%);  transform: translateX(-3px); }
+            49%  { clip-path: polygon(0 28%,100% 28%,100% 36%,0 36%);  transform: translateX(2px); }
+            55%  { clip-path: polygon(0 0,100% 0,100% 0,0 0);          transform: translateX(0); }
+            61%  { clip-path: polygon(0 85%,100% 85%,100% 93%,0 93%);  transform: translateX(-4px); }
+            67%  { clip-path: polygon(0 14%,100% 14%,100% 23%,0 23%);  transform: translateX(3px); }
+            73%  { clip-path: polygon(0 50%,100% 50%,100% 60%,0 60%);  transform: translateX(-3px); }
+            79%  { clip-path: polygon(0 0,100% 0,100% 0,0 0);          transform: translateX(0); }
+            85%  { clip-path: polygon(0 35%,100% 35%,100% 44%,0 44%);  transform: translateX(4px); }
+            91%  { clip-path: polygon(0 72%,100% 72%,100% 82%,0 82%);  transform: translateX(-2px); }
+            97%  { clip-path: polygon(0 0,100% 0,100% 0,0 0);          transform: translateX(0); }
+            100% { clip-path: polygon(0 0,100% 0,100% 0,0 0);          transform: translateX(0); }
         }
 
         /* ── Buttons ── */
@@ -206,6 +257,128 @@
         .card-icon { width: 72px; height: 72px; transition: transform 0.3s; }
         .group:hover .card-icon { transform: scale(1.12); }
 
+        /* ══ SPOTIFY SECTION ══ */
+        .spotify-card {
+            background: rgba(5,5,14,0.9);
+            border: 1px solid rgba(30,215,96,0.25);
+            position: relative; overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        .spotify-card:hover {
+            border-color: rgba(30,215,96,0.6);
+            box-shadow: 0 0 24px rgba(30,215,96,0.15);
+            transform: translateY(-4px);
+        }
+        .spotify-eq {
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            height: 16px;
+        }
+        .spotify-eq span {
+            width: 3px;
+            background: #1ed760;
+            border-radius: 2px;
+            animation: eq-bounce 0.8s ease-in-out infinite alternate;
+        }
+        .spotify-eq span:nth-child(1) { height: 6px;  animation-delay: 0s; }
+        .spotify-eq span:nth-child(2) { height: 12px; animation-delay: 0.15s; }
+        .spotify-eq span:nth-child(3) { height: 8px;  animation-delay: 0.3s; }
+        .spotify-eq span:nth-child(4) { height: 14px; animation-delay: 0.1s; }
+        .spotify-eq span:nth-child(5) { height: 5px;  animation-delay: 0.25s; }
+        @keyframes eq-bounce {
+            from { transform: scaleY(0.4); opacity: 0.7; }
+            to   { transform: scaleY(1);   opacity: 1; }
+        }
+        .track-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .track-row:hover { background: rgba(30,215,96,0.07); }
+        .track-row.playing { background: rgba(30,215,96,0.1); }
+        .track-num {
+            width: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(255,255,255,0.35);
+            font-family: 'Orbitron', monospace;
+            flex-shrink: 0;
+        }
+        .track-row.playing .track-num { display: none; }
+        .track-row.playing .eq-mini { display: flex; }
+        .eq-mini {
+            display: none;
+            width: 20px;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 1px;
+            height: 14px;
+            flex-shrink: 0;
+        }
+        .eq-mini span {
+            width: 2px;
+            background: #1ed760;
+            border-radius: 1px;
+            animation: eq-bounce 0.7s ease-in-out infinite alternate;
+        }
+        .eq-mini span:nth-child(1) { height: 5px;  animation-delay: 0s; }
+        .eq-mini span:nth-child(2) { height: 10px; animation-delay: 0.2s; }
+        .eq-mini span:nth-child(3) { height: 6px;  animation-delay: 0.1s; }
+        .track-art {
+            width: 40px; height: 40px;
+            border-radius: 4px;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 1px solid rgba(30,215,96,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+        .track-info { flex: 1; min-width: 0; }
+        .track-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .track-row.playing .track-title { color: #1ed760; }
+        .track-artist {
+            font-size: 11px;
+            color: rgba(255,255,255,0.45);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .track-dur {
+            font-size: 11px;
+            color: rgba(255,255,255,0.35);
+            font-family: 'Orbitron', monospace;
+            flex-shrink: 0;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 3px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #1ed760, #00ffaa);
+            border-radius: 2px;
+            animation: progress-move 30s linear infinite;
+        }
+        @keyframes progress-move {
+            from { width: 0%; }
+            to   { width: 100%; }
+        }
+
         /* Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: var(--bg-dark); }
@@ -221,7 +394,7 @@
     <nav class="fixed w-full z-50 py-3 bg-black/50 border-b border-cyan-500/20" style="backdrop-filter:blur(16px)">
         <div class="container mx-auto px-6 flex justify-between items-center">
             <a href="#home" class="text-xl font-bold tracking-tighter brand-font select-none">
-                <span class="shimmer-white">MARMAR.</span><span class="logo-shimmer">DEV</span>
+                <span class="shimmer-white">PEEPZY</span><span class="logo-shimmer">DEV</span>
             </a>
             <div class="hidden md:flex items-center">
                 <div class="nav-pill-wrap" id="pillNav">
@@ -229,6 +402,7 @@
                     <a href="#home"     class="nav-pill-item active" data-section="home">Home</a>
                     <a href="#projects" class="nav-pill-item" data-section="projects">Quests</a>
                     <a href="#skills"   class="nav-pill-item" data-section="skills">Arsenal</a>
+                    <a href="#playlist" class="nav-pill-item" data-section="playlist">Playlist</a>
                 </div>
                 <a href="#contact" class="nav-coop">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10h2v2H7v2H5v-2H3v-2h2V8h2v2zm10 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm-3 2a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM21 6H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h18a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2zm0 10H3V8h18v8z"/></svg>
@@ -243,6 +417,7 @@
             <a href="#home"     class="block py-2 text-sm font-bold tracking-widest uppercase brand-font shimmer-white">Home</a>
             <a href="#projects" class="block py-2 text-sm font-bold tracking-widest uppercase brand-font shimmer-white">Quests</a>
             <a href="#skills"   class="block py-2 text-sm font-bold tracking-widest uppercase brand-font shimmer-white">Arsenal</a>
+            <a href="#playlist" class="block py-2 text-sm font-bold tracking-widest uppercase brand-font shimmer-green">Playlist</a>
             <a href="#contact"  class="block py-2 text-sm font-bold tracking-widest uppercase brand-font shimmer-pink">Co-Op Mode</a>
         </div>
     </nav>
@@ -250,24 +425,27 @@
     <!-- ══ HERO ══ -->
     <section id="home" class="h-screen flex items-center justify-center pt-20 relative">
         <div class="scanlines"></div>
-        <div class="text-center space-y-6 px-4 relative z-10">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 mb-4 text-xs font-bold tracking-widest uppercase border border-green-400/40 rounded-full bg-green-400/10 animate-pulse brand-font shimmer-green">
+        <div class="text-center space-y-5 px-4 relative z-10">
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 mb-2 text-xs font-bold tracking-widest uppercase border border-green-400/40 rounded-full bg-green-400/10 animate-pulse brand-font shimmer-green">
                 ● Player 1 Ready
             </div>
-            <div class="glitch-wrapper block">
-                <h1 class="text-5xl md:text-7xl tracking-tight glitch shimmer-white" data-text="HI, I'M MARMAR">
-                    HI, I'M <span class="shimmer-cyan">MARMAR</span>
+
+            <!-- GLITCH TITLE — always visible, no shimmer disappear -->
+            <div>
+                <h1 class="text-4xl md:text-7xl tracking-tight glitch-title"
+                    data-text="HI, I'M PEEPZY">
+                    HI, I'M <span class="cyan-word">PEEPZY</span>
                 </h1>
             </div>
-            <p class="text-lg md:text-xl max-w-2xl mx-auto font-semibold leading-relaxed" style="color:#c0c0d0">
+
+            <p class="text-sm md:text-lg max-w-xl mx-auto font-semibold leading-relaxed px-2" style="color:#c0c0d0">
                 Full-stack Developer spesialis <span class="shimmer-pink">LIV Stack</span> (Laravel, Inertia, Vue).
-                Membangun aplikasi web layaknya menyelesaikan game mode Hardcore:
-                <span class="shimmer-cyan">Performan &amp; Terukur.</span>
+                Membangun aplikasi web: <span class="shimmer-cyan">Performan &amp; Terukur.</span>
             </p>
-            <div class="flex justify-center gap-5 pt-6">
-                <a href="#projects" class="px-8 py-3 btn-neon rounded-sm">Initiate Projects</a>
-                <a href="https://github.com" target="_blank" class="px-8 py-3 btn-neon btn-neon-pink rounded-sm flex items-center gap-2">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.004 2.04.14 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            <div class="flex flex-wrap justify-center gap-3 pt-4">
+                <a href="#projects" class="px-6 py-2.5 text-xs btn-neon rounded-sm">Initiate Projects</a>
+                <a href="https://github.com/markumarkntl" target="_blank" class="px-6 py-2.5 text-xs btn-neon btn-neon-pink rounded-sm flex items-center gap-2">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.39.6.11.82-.26.82-.58v-2.02c-3.34.72-4.04-1.61-4.04-1.61-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .11-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 0 1 3-.4c1.02.004 2.04.14 3 .4 2.28-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.69.83.57C20.57 21.8 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
                     GitHub Data
                 </a>
             </div>
@@ -292,11 +470,14 @@
                     </div>
                     <div class="p-6">
                         <h3 class="text-2xl font-bold mb-2 brand-font shimmer-white">Smart POS System</h3>
-                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">Sistem kasir modern dengan fitur RBAC, manajemen stok, dan laporan keuangan real-time.</p>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">Sistem kasir modern dengan fitur RBAC, manajemen stok, real-time WebSocket, dan laporan keuangan.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
                             <span class="px-2 py-1 text-[11px] font-bold border border-red-500/60 text-red-400 rounded-sm bg-red-500/5">Laravel</span>
                             <span class="px-2 py-1 text-[11px] font-bold border border-green-500/60 text-green-400 rounded-sm bg-green-500/5">Vue.js</span>
                             <span class="px-2 py-1 text-[11px] font-bold border border-purple-500/60 text-purple-400 rounded-sm bg-purple-500/5">Inertia</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-orange-400/60 text-orange-400 rounded-sm bg-orange-400/5">Metronic</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-sky-500/60 text-sky-400 rounded-sm bg-sky-500/5">WebSocket</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-blue-500/60 text-blue-400 rounded-sm bg-blue-500/5">MySQL</span>
                         </div>
                         <a href="#" class="inline-block text-sm font-bold tracking-wider uppercase shimmer-cyan">View Source [&gt;]</a>
                     </div>
@@ -314,8 +495,9 @@
                         <h3 class="text-2xl font-bold mb-2 brand-font shimmer-white">RyudiWibu Tracker</h3>
                         <p class="text-slate-400 text-sm mb-4 leading-relaxed">Platform personal untuk tracking Anime/Manga menggunakan integrasi Jikan API.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-2 py-1 text-[11px] font-bold border border-indigo-400/60 text-indigo-400 rounded-sm bg-indigo-400/5">PHP 8.3</span>
-                            <span class="px-2 py-1 text-[11px] font-bold border border-sky-400/60 text-sky-400 rounded-sm bg-sky-400/5">Tailwind</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-red-500/60 text-red-400 rounded-sm bg-red-500/5">Laravel</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-green-500/60 text-green-400 rounded-sm bg-green-500/5">Vue.js</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-sky-400/60 text-sky-400 rounded-sm bg-sky-400/5">Tailwind CSS</span>
                             <span class="px-2 py-1 text-[11px] font-bold border border-yellow-400/60 text-yellow-400 rounded-sm bg-yellow-400/5">Jikan API</span>
                         </div>
                         <a href="#" class="inline-block text-sm font-bold tracking-wider uppercase shimmer-pink">Live Demo [&gt;]</a>
@@ -334,10 +516,34 @@
                         <h3 class="text-2xl font-bold mb-2 brand-font shimmer-white">Finance Tracker</h3>
                         <p class="text-slate-400 text-sm mb-4 leading-relaxed">Aplikasi pengelola keuangan pribadi dengan visualisasi data interaktif dan UI modern.</p>
                         <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="px-2 py-1 text-[11px] font-bold border border-red-500/60 text-red-400 rounded-sm bg-red-500/5">Laravel 12</span>
-                            <span class="px-2 py-1 text-[11px] font-bold border border-cyan-500/60 text-cyan-400 rounded-sm bg-cyan-500/5">Metronic 8</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-red-500/60 text-red-400 rounded-sm bg-red-500/5">Laravel</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-cyan-500/60 text-cyan-400 rounded-sm bg-cyan-500/5">Tabler</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-blue-500/60 text-blue-400 rounded-sm bg-blue-500/5">MySQL</span>
                         </div>
                         <a href="#" class="inline-block text-sm font-bold tracking-wider uppercase shimmer-green">Access Data [&gt;]</a>
+                    </div>
+                </div>
+
+                <!-- Card 4: Smart POS Mobile -->
+                <div class="interactive-card rounded-xl">
+                    <div class="h-48 border-b border-cyan-500/20 flex items-center justify-center bg-black/50 relative overflow-hidden group">
+                        <div class="absolute inset-0 bg-blue-400/5 opacity-0 group-hover:opacity-100 transition"></div>
+                        <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="#54c5f8" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 14px rgba(84,197,248,0.6))">
+                            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+                            <line x1="12" y1="18" x2="12.01" y2="18"/>
+                            <path d="M9 7h6M9 11h4"/>
+                        </svg>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold mb-2 brand-font shimmer-white">Smart POS Mobile</h3>
+                        <p class="text-slate-400 text-sm mb-4 leading-relaxed">Versi mobile dari Smart POS System, dibangun native dengan Flutter untuk Android & iOS. Sinkronisasi real-time dengan server via REST API.</p>
+                        <div class="flex flex-wrap gap-2 mb-6">
+                            <span class="px-2 py-1 text-[11px] font-bold border border-sky-400/60 text-sky-400 rounded-sm bg-sky-400/5">Flutter</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-cyan-500/60 text-cyan-400 rounded-sm bg-cyan-500/5">Dart</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-red-500/60 text-red-400 rounded-sm bg-red-500/5">Laravel API</span>
+                            <span class="px-2 py-1 text-[11px] font-bold border border-blue-500/60 text-blue-400 rounded-sm bg-blue-500/5">MySQL</span>
+                        </div>
+                        <a href="#" class="inline-block text-sm font-bold tracking-wider uppercase shimmer-cyan">View Source [&gt;]</a>
                     </div>
                 </div>
 
@@ -368,7 +574,7 @@
                 <!-- PHP -->
                 <div class="group flex flex-col items-center gap-3 cursor-crosshair">
                     <svg class="skill-icon si-php" style="fill:#334155" viewBox="0 0 24 24"><path d="M12 5.7C5.4 5.7 0 8.6 0 12s5.4 6.3 12 6.3 12-2.9 12-6.3-5.4-6.3-12-6.3zm-2.7 8.8H8v-1.4H6.7v1.4H5.4V9.5h1.3v2.4H8V9.5h1.3v5zm5.2 0h-1.1l-.1-.6c-.4.5-.8.7-1.4.7-.8 0-1.4-.5-1.4-1.5V9.5h1.3v3.5c0 .4.2.6.5.6.3 0 .6-.2.7-.6V9.5H14v1.4h.8c.7 0 1.1.4 1.1 1v1.2c0 .8-.6 1.4-1.4 1.4zm4.3-1h-.5v1h-1.3V9.5h1.8c1.1 0 1.8.6 1.8 1.8 0 1.3-.7 2.2-1.8 2.2zm-.3-2.9h-.2v1.9h.2c.4 0 .6-.4.6-1 0-.5-.2-.9-.6-.9z"/></svg>
-                    <span class="text-xs font-bold tracking-widest opacity-0 group-hover:opacity-100 transition brand-font" style="color:#8892be">PHP 8.3</span>
+                    <span class="text-xs font-bold tracking-widest opacity-0 group-hover:opacity-100 transition brand-font" style="color:#576ac2">PHP 8.2</span>
                 </div>
 
                 <!-- JS -->
@@ -393,6 +599,378 @@
         </div>
     </section>
 
+    <!-- ══ SPOTIFY PLAYLIST ══ -->
+    <section id="playlist" class="py-24 relative z-10">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-4xl font-bold mb-4 text-center uppercase tracking-widest brand-font">
+                My <span class="shimmer-green">Playlist</span>
+            </h2>
+            <p class="text-center text-slate-400 text-sm mb-12 font-semibold tracking-wider">
+                mikir kids · <span style="color:rgba(30,215,96,0.8)">playlist by Kang Peepzy-SSI</span>
+            </p>
+
+            <div class="spotify-card rounded-2xl overflow-hidden">
+                <!-- Header -->
+                <div class="p-6 border-b border-green-500/10" style="background: linear-gradient(135deg, rgba(30,215,96,0.08) 0%, rgba(0,0,0,0) 60%);">
+                    <div class="flex items-center gap-5">
+                        <!-- Cover Art -->
+                        <div class="relative flex-shrink-0">
+                            <div class="w-24 h-24 rounded-xl overflow-hidden" style="background: linear-gradient(135deg, #0d2e1a 0%, #0a1628 50%, #1a0d2e 100%); border: 1px solid rgba(30,215,96,0.3); display:flex; align-items:center; justify-content:center;">
+                                <svg width="40" height="40" viewBox="0 0 24 24" fill="#1ed760"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                            </div>
+                            <div class="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-green-500 flex items-center justify-content-center" style="display:flex; align-items:center; justify-content:center;">
+                                <svg width="10" height="10" viewBox="0 0 24 24" fill="#000"><path d="M8 5v14l11-7z"/></svg>
+                            </div>
+                        </div>
+                        <!-- Info -->
+                        <div class="flex-1 min-w-0">
+                            <p class="text-xs font-bold tracking-widest uppercase mb-1 brand-font" style="color:rgba(30,215,96,0.7)">PLAYLIST</p>
+                            <h3 class="text-xl font-bold brand-font text-white truncate">mikir kids</h3>
+                            <p class="text-sm mt-1" style="color:rgba(255,255,255,0.5)">Kang Peepzy-SSI · 43 lagu · ~3 jam</p>
+                            <!-- Now Playing -->
+                            <div class="flex items-center gap-2 mt-2">
+                                <div class="spotify-eq">
+                                    <span></span><span></span><span></span><span></span><span></span>
+                                </div>
+                                <span class="text-xs font-semibold" style="color:#1ed760">Now Playing</span>
+                            </div>
+                        </div>
+                        <!-- Spotify logo -->
+                        <a href="https://open.spotify.com" target="_blank" class="flex-shrink-0 opacity-60 hover:opacity-100 transition">
+                            <svg width="28" height="28" viewBox="0 0 24 24" fill="#1ed760"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                        </a>
+                    </div>
+                    <!-- Progress bar -->
+                    <div class="mt-5">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                        <div class="flex justify-between mt-1">
+                            <span class="text-xs brand-font" style="color:rgba(30,215,96,0.6)">1:24</span>
+                            <span class="text-xs brand-font" style="color:rgba(255,255,255,0.3)">3:47</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Track List -->
+                <div class="py-3 px-2" style="max-height:420px; overflow-y:auto;">
+
+                    <div class="track-row playing" onclick="setPlaying(this)">
+                        <div class="track-num">1</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🎵</div>
+                        <div class="track-info"><div class="track-title">Still into You</div><div class="track-artist">Paramore</div></div>
+                        <div class="track-dur">3:36</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">2</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🎵</div>
+                        <div class="track-info"><div class="track-title">Hate to See Your Heart Break</div><div class="track-artist">Paramore</div></div>
+                        <div class="track-dur">5:09</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">3</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🎵</div>
+                        <div class="track-info"><div class="track-title">Ain't It Fun</div><div class="track-artist">Paramore</div></div>
+                        <div class="track-dur">4:56</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">4</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🎵</div>
+                        <div class="track-info"><div class="track-title">Decode</div><div class="track-artist">Paramore</div></div>
+                        <div class="track-dur">4:21</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">5</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🎵</div>
+                        <div class="track-info"><div class="track-title">That's What You Get</div><div class="track-artist">Paramore</div></div>
+                        <div class="track-dur">3:40</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">6</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🎵</div>
+                        <div class="track-info"><div class="track-title">Misery Business</div><div class="track-artist">Paramore</div></div>
+                        <div class="track-dur">3:31</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">7</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🎵</div>
+                        <div class="track-info"><div class="track-title">When It Rains</div><div class="track-artist">Paramore</div></div>
+                        <div class="track-dur">3:35</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">8</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🎵</div>
+                        <div class="track-info"><div class="track-title">Miracle</div><div class="track-artist">Paramore</div></div>
+                        <div class="track-dur">3:29</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">9</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🎵</div>
+                        <div class="track-info"><div class="track-title">Born for This</div><div class="track-artist">Paramore</div></div>
+                        <div class="track-dur">3:58</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">10</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🎵</div>
+                        <div class="track-info"><div class="track-title">crushcrushcrush</div><div class="track-artist">Paramore</div></div>
+                        <div class="track-dur">3:09</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">11</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🎵</div>
+                        <div class="track-info"><div class="track-title">Let the Flames Begin</div><div class="track-artist">Paramore</div></div>
+                        <div class="track-dur">3:18</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">12</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🤘</div>
+                        <div class="track-info"><div class="track-title">Gunslinger</div><div class="track-artist">Avenged Sevenfold</div></div>
+                        <div class="track-dur">4:11</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">13</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🤘</div>
+                        <div class="track-info"><div class="track-title">Brompton Cocktail</div><div class="track-artist">Avenged Sevenfold</div></div>
+                        <div class="track-dur">4:12</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">14</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🤘</div>
+                        <div class="track-info"><div class="track-title">A Little Piece of Heaven</div><div class="track-artist">Avenged Sevenfold</div></div>
+                        <div class="track-dur">8:00</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">15</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🤘</div>
+                        <div class="track-info"><div class="track-title">Dear God</div><div class="track-artist">Avenged Sevenfold</div></div>
+                        <div class="track-dur">6:33</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">16</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🤘</div>
+                        <div class="track-info"><div class="track-title">Unbound (The Wild Ride)</div><div class="track-artist">Avenged Sevenfold</div></div>
+                        <div class="track-dur">5:11</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">17</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🤘</div>
+                        <div class="track-info"><div class="track-title">Scream</div><div class="track-artist">Avenged Sevenfold</div></div>
+                        <div class="track-dur">4:48</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">18</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🤘</div>
+                        <div class="track-info"><div class="track-title">Afterlife</div><div class="track-artist">Avenged Sevenfold</div></div>
+                        <div class="track-dur">5:52</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">19</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🤘</div>
+                        <div class="track-info"><div class="track-title">Critical Acclaim</div><div class="track-artist">Avenged Sevenfold</div></div>
+                        <div class="track-dur">5:15</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">20</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🤘</div>
+                        <div class="track-info"><div class="track-title">Almost Easy</div><div class="track-artist">Avenged Sevenfold</div></div>
+                        <div class="track-dur">3:54</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">21</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🤘</div>
+                        <div class="track-info"><div class="track-title">Lost</div><div class="track-artist">Avenged Sevenfold</div></div>
+                        <div class="track-dur">5:01</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">22</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🤘</div>
+                        <div class="track-info"><div class="track-title">Nightmare</div><div class="track-artist">Avenged Sevenfold</div></div>
+                        <div class="track-dur">—</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">23</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🌊</div>
+                        <div class="track-info"><div class="track-title">Diamond Heart</div><div class="track-artist">Alan Walker, Sophia Somajo</div></div>
+                        <div class="track-dur">4:00</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">24</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🌊</div>
+                        <div class="track-info"><div class="track-title">Darkside</div><div class="track-artist">Alan Walker, Au/Ra, Tomine Harket</div></div>
+                        <div class="track-dur">3:31</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">25</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🌊</div>
+                        <div class="track-info"><div class="track-title">Sing Me to Sleep</div><div class="track-artist">Alan Walker</div></div>
+                        <div class="track-dur">3:07</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">26</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🌊</div>
+                        <div class="track-info"><div class="track-title">All Falls Down (feat. Juliander)</div><div class="track-artist">Alan Walker, Noah Cyrus, Juliander</div></div>
+                        <div class="track-dur">3:18</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">27</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🌊</div>
+                        <div class="track-info"><div class="track-title">Alone</div><div class="track-artist">Alan Walker</div></div>
+                        <div class="track-dur">2:40</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">28</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🌊</div>
+                        <div class="track-info"><div class="track-title">Lost Control</div><div class="track-artist">Alan Walker, Sorana</div></div>
+                        <div class="track-dur">3:42</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">29</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🌊</div>
+                        <div class="track-info"><div class="track-title">On My Way</div><div class="track-artist">Alan Walker, Sabrina Carpenter, Farruko</div></div>
+                        <div class="track-dur">3:13</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">30</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🌊</div>
+                        <div class="track-info"><div class="track-title">Unity</div><div class="track-artist">The Walkers, Alan Walker, SAPPHIRE</div></div>
+                        <div class="track-dur">3:24</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">31</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🌊</div>
+                        <div class="track-info"><div class="track-title">Hero</div><div class="track-artist">Alan Walker, Sasha Alex Sloan</div></div>
+                        <div class="track-dur">2:55</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">32</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🖤</div>
+                        <div class="track-info"><div class="track-title">Welcome to the Black Parade</div><div class="track-artist">My Chemical Romance</div></div>
+                        <div class="track-dur">5:11</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">33</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🖤</div>
+                        <div class="track-info"><div class="track-title">Dead!</div><div class="track-artist">My Chemical Romance</div></div>
+                        <div class="track-dur">3:15</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">34</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🖤</div>
+                        <div class="track-info"><div class="track-title">The Sharpest Lives</div><div class="track-artist">My Chemical Romance</div></div>
+                        <div class="track-dur">3:20</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">35</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🖤</div>
+                        <div class="track-info"><div class="track-title">This Is How I Disappear</div><div class="track-artist">My Chemical Romance</div></div>
+                        <div class="track-dur">3:59</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">36</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🖤</div>
+                        <div class="track-info"><div class="track-title">House of Wolves</div><div class="track-artist">My Chemical Romance</div></div>
+                        <div class="track-dur">3:04</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">37</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🖤</div>
+                        <div class="track-info"><div class="track-title">Cancer</div><div class="track-artist">My Chemical Romance</div></div>
+                        <div class="track-dur">2:22</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">38</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🖤</div>
+                        <div class="track-info"><div class="track-title">Sleep</div><div class="track-artist">My Chemical Romance</div></div>
+                        <div class="track-dur">4:43</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">39</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🖤</div>
+                        <div class="track-info"><div class="track-title">Teenagers</div><div class="track-artist">My Chemical Romance</div></div>
+                        <div class="track-dur">2:41</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">40</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🖤</div>
+                        <div class="track-info"><div class="track-title">Famous Last Words</div><div class="track-artist">My Chemical Romance</div></div>
+                        <div class="track-dur">4:59</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">41</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🖤</div>
+                        <div class="track-info"><div class="track-title">The End.</div><div class="track-artist">My Chemical Romance</div></div>
+                        <div class="track-dur">1:52</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">42</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🖤</div>
+                        <div class="track-info"><div class="track-title">Disenchanted</div><div class="track-artist">My Chemical Romance</div></div>
+                        <div class="track-dur">4:55</div>
+                    </div>
+
+                    <div class="track-row" onclick="setPlaying(this)">
+                        <div class="track-num">43</div><div class="eq-mini"><span></span><span></span><span></span></div>
+                        <div class="track-art">🖤</div>
+                        <div class="track-info"><div class="track-title">I Don't Love You</div><div class="track-artist">My Chemical Romance</div></div>
+                        <div class="track-dur">3:58</div>
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="px-6 py-4 border-t border-green-500/10 flex items-center justify-between">
+                    <span class="text-xs brand-font tracking-widest" style="color:rgba(255,255,255,0.3)">43 SONGS · ~3 HR</span>
+                        <a href="https://open.spotify.com/playlist/0plKhrEb4OG3CErj8G4Mm7" target="_blank"
+                       class="px-4 py-2 text-xs font-bold rounded-full border border-green-500/50 text-green-400 brand-font tracking-wider hover:bg-green-500/10 transition flex items-center gap-2">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+                        OPEN IN SPOTIFY
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- ══ CONTACT ══ -->
     <section id="contact" class="py-24 relative z-10">
         <div class="container mx-auto px-6 text-center">
@@ -403,7 +981,7 @@
                     Start <span class="shimmer-cyan">Co-Op Mode?</span>
                 </h2>
                 <p class="mb-8 text-lg leading-relaxed" style="color:#c0c0d0">Tertarik berkolaborasi? Server selalu online untuk diskusi proyek baru atau sekadar berbagi exp tentang Laravel &amp; Vue.</p>
-                <a href="mailto:hello@marmar.dev" class="inline-flex items-center gap-3 px-12 py-4 btn-neon rounded-sm text-base">
+                <a href="mailto:markumarkntl@gmail.com" class="inline-flex items-center gap-3 px-12 py-4 btn-neon rounded-sm text-base">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2 21l21-9L2 3v7l15 2-15 2v7z"/></svg>
                     Send Transmission
                 </a>
@@ -412,7 +990,7 @@
     </section>
 
     <footer class="py-6 text-center text-xs font-bold tracking-widest border-t border-cyan-900/30 bg-black/80 relative z-10 brand-font">
-        <p class="shimmer-white">SYSTEM &copy; 2026 MARMAR DEV. <span class="shimmer-pink">LIV STACK</span> ENGINE RUNNING.</p>
+        <p class="shimmer-white">SYSTEM &copy; 2026 PEEPZY DEV. <span class="shimmer-pink">LIV STACK</span> ENGINE RUNNING.</p>
     </footer>
 
     <script>
@@ -443,7 +1021,7 @@
         });
 
         /* Scroll-spy */
-        const secs = ['home','projects','skills','contact'];
+        const secs = ['home','projects','skills','playlist','contact'];
         window.addEventListener('scroll', () => {
             let cur = 'home';
             secs.forEach(id => {
@@ -476,6 +1054,12 @@
                 card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
             }
         });
+
+        /* Spotify track click */
+        function setPlaying(row) {
+            document.querySelectorAll('.track-row').forEach(r => r.classList.remove('playing'));
+            row.classList.add('playing');
+        }
     </script>
 </body>
 </html>
